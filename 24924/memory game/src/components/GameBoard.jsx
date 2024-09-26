@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setFlipped, setMoves, setSolved } from "../../store/GameStore";
-import Card from "./Card";
+import { setFlipped, setMoves, setSolved } from "../store/GameStore";
+import Card from "./card/Card";
 
 const GameBoard = () => {
 

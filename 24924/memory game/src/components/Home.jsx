@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setIsHome, setLevel } from "../../store/GameStore";
+import { setIsHome, setLevel } from "../store/GameStore";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();

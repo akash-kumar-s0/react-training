@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
-import MemoryGame from "./components/MemoryGame";
 import "./App.css";
 import store from "./store/Store";
+import MemoryGame from "./screen/MemoryGame";
 
 function App() {
   return (

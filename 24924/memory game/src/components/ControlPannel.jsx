@@ -6,9 +6,9 @@ import {
   setLevel,
   setMoves,
   setSolved,
-} from "../../store/GameStore";
+} from "../store/GameStore";
 import { useEffect } from "react";
-import store from "../../store/Store";
+import store from "../store/Store";
 
 const ControlPanel = () => {
   const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import GameBoard from "./ui/GameBoard";
-import ControlPanel from "./ui/ControlPannel";
+import GameBoard from "../components/GameBoard.jsx";
+import ControlPanel from "../components/ControlPannel.jsx";
 import { shuffle } from "lodash";
-import animals from "./CardData.js";
-import HomeScreen from "./ui/Home.jsx";
+import animals from "../components/data/CardData.js";
+import HomeScreen from "../components/Home.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setCards, setCompletedLevels, setFlipped, setMoves, setSolved } from "../store/GameStore.js";
 
