@@ -14,7 +14,7 @@ const MemoryGame = () => {
   useEffect(() => {
     const storedCompletedLevels = JSON.parse(sessionStorage.getItem('completedLevels') || '{}');
     dispatch(setCompletedLevels(storedCompletedLevels));
-  }, [dispatch]);
+  }, [dispatch, isHome]);
 
   useEffect(() => {
     if (level !== null) {
