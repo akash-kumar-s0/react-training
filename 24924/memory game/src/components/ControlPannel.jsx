@@ -59,18 +59,6 @@ const ControlPanel = () => {
     <div className="space-y-4">
       <div>
         <p>Moves: {moves}</p>
-        {isGameComplete && (
-          <div className="mp-4">
-            {level < 8 && (
-              <button
-                onClick={handleNextLevel}
-                className="p-4 mt-3 bg-black rounded text-white"
-              >
-                Next Level
-              </button>
-            )}
-          </div>
-        )}
       </div>
       <div className="space-x-2">
         <button
