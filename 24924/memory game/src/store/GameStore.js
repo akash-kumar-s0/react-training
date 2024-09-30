@@ -50,6 +50,7 @@ export const gameSlice = createSlice({
         ? Math.max(state.completedLevels[level][1], score)
         : score;
       state.completedLevels[level] = [minMoves, maxScore];
+      state.solved = []
     },
   },
 });

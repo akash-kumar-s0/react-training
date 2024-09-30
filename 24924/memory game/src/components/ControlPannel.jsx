@@ -1,19 +1,16 @@
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  completeLevel,
-  setFlipped,
-  setIsHome,
-  setLevel,
-  setMoves,
-  setSolved,
-} from "../store/GameStore";
-import { useEffect } from "react";
+import { completeLevel, setFlipped, setIsHome, setLevel, setMoves, setSolved } from "../store/GameStore";
 import store from "../store/Store";
+import { Player } from "@lottiefiles/react-lottie-player";
+import crackerAnimation from '../animation/cracker.json';
 
 const ControlPanel = () => {
   const dispatch = useDispatch();
   const { moves, level, solved, cards } = useSelector((state) => state.game);
   const isGameComplete = solved.length === cards.length;
+  
+  const [showCongratsModal, setShowCongratsModal] = useState(false);
 
   const handleScore = () => {
     const totalScore = 100;
@@ -28,6 +25,7 @@ const ControlPanel = () => {
       dispatch(completeLevel({ moves, score }));
       const completedLevel = store.getState().game.completedLevels;
       sessionStorage.setItem("completedLevels", JSON.stringify(completedLevel));
+      setShowCongratsModal(true); 
     }
   }, [isGameComplete]);
 
@@ -35,6 +33,7 @@ const ControlPanel = () => {
     dispatch(setFlipped([]));
     dispatch(setSolved([]));
     dispatch(setMoves(0));
+    setShowCongratsModal(false); 
   };
 
   const handleHome = () => {
@@ -46,12 +45,14 @@ const ControlPanel = () => {
     if (level < 8) {
       dispatch(setLevel(level + 1));
     }
+    setShowCongratsModal(false); 
   };
 
   const handlePreviousLevel = () => {
     if (level && level > 1) {
       dispatch(setLevel(level - 1));
     }
+    setShowCongratsModal(false); 
   };
 
   return (
@@ -60,9 +61,6 @@ const ControlPanel = () => {
         <p>Moves: {moves}</p>
         {isGameComplete && (
           <div className="mp-4">
-            <p className="text-xl font-bold">
-              Congratulations! You completed the level!
-            </p>
             {level < 8 && (
               <button
                 onClick={handleNextLevel}
@@ -96,6 +94,37 @@ const ControlPanel = () => {
           Go to Home
         </button>
       </div>
+
+      {showCongratsModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-20 rounded shadow-lg text-center">
+            <Player
+              autoplay
+              loop
+              src={crackerAnimation} 
+              style={{ height: "200px", width: "200px" }}
+            />
+            <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
+            <p>You have completed the level!</p>
+            <div className="mt-4 space-x-2">
+              {level < 8 && (
+                <button
+                  onClick={handleNextLevel}
+                  className="p-4 bg-green-500 rounded text-white"
+                >
+                  Next Level
+                </button>
+              )}
+              <button
+                onClick={() => setShowCongratsModal(false)}
+                className="p-4 bg-blue-500 rounded text-white"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
